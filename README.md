@@ -11,3 +11,6 @@ In essence, the names should be swapped. process.nextTick() fires more immediate
 
 nextTick 的插入位置是在当前帧的末尾、io回调之前，如果nextTick过多，会导致io回调不断延后
 setImmediate 的插入位置是在下一帧，不会影响io回调
+
+
+可以这样来理解. process.nextTick和setImmediate方法在实现上分别对应这两个队列-- 不妨叫作nextTick队列和immediate队列. 到nextTick的时候, 这两个队列被执行的情况有所差异: nextTick队列中的方法会被全部执行(包括在执行过程中新加的),而immediate队列只会取其第一个方法来执行.
